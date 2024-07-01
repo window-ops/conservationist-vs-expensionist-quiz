@@ -105,8 +105,8 @@ const quizForm = document.getElementById('quiz-form');
 const submitButton = document.getElementById('submit-btn');
 const resultDiv = document.getElementById('result');
 
-let earthistPoints = 0;
-let spacistPoints = 0;
+let conservationistPoints = 0;
+let expensionistPoints = 0;
 let isQuizSubmitted = false;
 let completedQuestions = 0;
 const totalQuestions = quizData.length;
@@ -139,18 +139,18 @@ function calculateResults() {
 
   for (const entry of formData.entries()) {
     if (entry[1] > 0) {
-      spacistPoints += parseInt(entry[1]);
+      expensionistPoints += parseInt(entry[1]);
     } else if (entry[1] < 0) {
-      earthistPoints += Math.abs(parseInt(entry[1]));
+      conservationistPoints += Math.abs(parseInt(entry[1]));
     }
   }
 
-  const totalPoints = spacistPoints + earthistPoints;
-  const earthistPercentage = ((earthistPoints / totalPoints) * 100).toFixed(2);
-  const spacistPercentage = ((spacistPoints / totalPoints) * 100).toFixed(2);
-  const indexValue = spacistPercentage - earthistPercentage;
+  const totalPoints = expensionistPoints + conservationistPoints;
+  const conservationistPercentage = ((conservationistPoints / totalPoints) * 100).toFixed(2);
+  const expensionistPercentage = ((expensionistPoints / totalPoints) * 100).toFixed(2);
+  const indexValue = expensionistPercentage - conservationistPercentage;
 
-  resultDiv.innerHTML = `You are ${earthistPercentage}% Conservationist and ${spacistPercentage}% Expensionist.`;
+  resultDiv.innerHTML = `You are ${conservationistPercentage}% Conservationist and ${expensionistPercentage}% Expensionist.`;
   displayResultAxis(indexValue);
 
   // Disable the quiz form after submission
